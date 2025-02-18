@@ -4,11 +4,13 @@ import { useMutionHook } from "@/hooks/use-mutation-hook"
 import {  useToast } from "@/hooks/use-toast"
 import { useOrganization } from "@clerk/nextjs"
 import Image from "next/image"
+import { useRouter } from "next/navigation"
 
 const EmptyBoards = () => {
   const { organization } = useOrganization()
   const { isLoading,mutate } = useMutionHook(api.board.create)
   const { toast } = useToast()
+  const router = useRouter()
   const onClick = () =>{
     if(!organization) return
     mutate({
@@ -18,7 +20,7 @@ const EmptyBoards = () => {
       toast({
         description:"Board created successfully"
       })
-      //Todo: redirect to board
+      router.push(`/board/${id}`)
     }).catch(()=>toast({
       description:"Failed to create board"
     }))

@@ -6,12 +6,13 @@
 import { useOrganization } from "@clerk/nextjs"
 import EmptyOrg from "./_components/empty-org"
 import BoardList from "./_components/board-list";
+import { Usable } from "react";
 
 interface DashboardPageProps{
-  searchParams: {
+  searchParams: Usable<{
     search?:string;
     favorites?:string;
-  }
+  }>
 }
 
 

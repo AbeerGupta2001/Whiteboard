@@ -5,6 +5,7 @@ import { useMutionHook } from "@/hooks/use-mutation-hook";
 import { useToast } from "@/hooks/use-toast";
 import { cn } from "@/lib/utils";
 import { Plus } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 interface NewBoardButtonProps{
     orgId:string;
@@ -14,6 +15,7 @@ interface NewBoardButtonProps{
 
 const NewBoardButton:React.FC<NewBoardButtonProps> = ({orgId,disabled}) => {
     const { mutate,isLoading } = useMutionHook(api.board.create);
+    const router = useRouter()
     const { toast } = useToast()
     const onClick = () => {
         mutate({
@@ -23,7 +25,7 @@ const NewBoardButton:React.FC<NewBoardButtonProps> = ({orgId,disabled}) => {
             toast({
                 description:"Board created successfully"
             })
-            //Todo: redirect to board
+            router.push(`/board/${id}`)
         }).catch(()=>toast({
             description:"Failed to create board"
         }))

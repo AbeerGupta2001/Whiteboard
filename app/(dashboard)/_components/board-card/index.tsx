@@ -56,13 +56,13 @@ const BoardCard = ({
     }
 
   return (
-    <Link href={`/dashboard/${id}`}>
+    <Link href={`/board/${id}`}>
       <div className="group aspect-[100/127] border rounded-lg flex flex-col justify-between overflow-hidden">
         <div className="relative flex-1 bg-amber-50">
           <Image src={imageUrl} alt={title} fill className="object-fit" />
           <Overlay/>
           <Actions side="right" id={id} title={title}>
-            <button className="outline-none">
+            <button className="outline-none absolute top-3 right-3 z-50">
               <EllipsisVertical className="size-6 text-white" />
             </button>
           </Actions>
